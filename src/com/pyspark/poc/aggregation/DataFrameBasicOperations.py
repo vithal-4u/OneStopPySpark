@@ -5,6 +5,7 @@ Basic operation on DataFrames
 
 @author: kasho
 '''
+from gevent.resolver.cares import result
 
 from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
 
@@ -114,3 +115,66 @@ for item in result[0]:
     220441900
     25.620401
 '''
+
+##########
+# Dates and Timestamps
+##########
+
+from pyspark.sql.functions import format_number,dayofmonth,hour,dayofyear,month,year,weekofyear,date_format
+
+df.select(dayofmonth(df['Date'])).show(5)
+'''
++----------------+
+|dayofmonth(Date)|
++----------------+
+|               4|
+|               5|
+|               6|
+|               7|
+|               8|
++----------------+
+
+Same way we can implement "year", "month", "hour", "dayofyear" :
+    1. df.select(dayofmonth(df['Date'])).show()
+    2. df.select(hour(df['Date'])).show()
+    3. df.select(dayofyear(df['Date'])).show()
+    4. df.select(month(df['Date'])).show()
+    5. df.select(year(df['Date'])).show()
+     
+'''
+
+newdf = df.withColumn("Year",year(df['Date']))
+newdf.groupBy("Year").mean()[['avg(Year)','avg(Close)']].show()
+'''
++---------+------------------+
+|avg(Year)|        avg(Close)|
++---------+------------------+
+|   2015.0|120.03999980555547|
+|   2013.0| 472.6348802857143|
+|   2014.0| 295.4023416507935|
+|   2012.0| 576.0497195640002|
+|   2016.0|104.60400786904763|
+|   2010.0| 259.8424600000002|
+|   2011.0|364.00432532142867|
++---------+------------------+
+'''
+
+result = newdf.groupBy("Year").mean()[['avg(Year)','avg(Close)']]
+result = result.withColumnRenamed("avg(Year)","Year")
+result.select('Year',format_number('avg(Close)',2).alias("Mean Close")).show()
+
+'''
++------+----------+
+|  Year|Mean Close|
++------+----------+
+|2015.0|    120.04|
+|2013.0|    472.63|
+|2014.0|    295.40|
+|2012.0|    576.05|
+|2016.0|    104.60|
+|2010.0|    259.84|
+|2011.0|    364.00|
++------+----------+
+'''
+
+print("Execution Completed")
