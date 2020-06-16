@@ -5,7 +5,7 @@ Spark Streaming
 Overview
 ========
 
-- In this tutorial, I'm showing spark streaming with 2 scenario:
+In this tutorial, I'm showing spark streaming with 2 scenario:
   a. Reading new file from Folder
   b. Reading Tweets from Twitter web
 
