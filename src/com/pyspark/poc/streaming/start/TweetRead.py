@@ -1,8 +1,10 @@
 '''
-Created on 10-Jun-2020
+Created on 16-Jun-2020
 
-Basic operation on DataFrames
-
+This file will read tweets from Twitter by using twitter app which is create
+    from http://apps.twitter.com.
+    we need to get the consumer_key, consumer_secret, access_token, access_secret
+    from the newly created app and need to assign below.
 @author: kasho
 '''
 
@@ -26,7 +28,7 @@ def sendData(c_socket):
     auth.set_access_token(access_token, access_secret)
 
     twitter_stream = Stream(auth, TweetsListener(c_socket))
-    twitter_stream.filter(track=['football'])
+    twitter_stream.filter(track=['trump'])
 
 if __name__ == "__main__":
     s = socket.socket()
