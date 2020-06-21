@@ -2,6 +2,7 @@
 
 
 '''
+from pyspark.streaming import StreamingContext
 
 from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
@@ -18,19 +19,22 @@ class BaseConfUtils(object):
         constructor
         '''
 
+
     def createSparkConfig(self,appName):
         conf = SparkConf()
-        conf.setMaster("local").setAppName(appName)
+        conf.set("spark.driver.allowMultipleContexts", "true").setMaster("local[2]").setAppName(appName)
         return conf
 
     def createSparkContext(self, appName):
         sparkConf = self.createSparkConfig(appName)
-        return SparkContext(conf=sparkConf)
+        return SparkContext(conf=sparkConf).getOrCreate()
 
     def createSparkSession(self, appName):
-        sparkSessObj = SparkSession.builder.master("local").appName(appName).getOrCreate()
+        sparkSessObj = SparkSession.builder.master("local[2]").appName(appName).getOrCreate()
         return sparkSessObj
 
-    def createSQLContext(self, appName):
-        sparkContext = self.createSparkContext(appName)
+    def createSQLContext(self,sparkContext):
         return SQLContext(sparkContext)
+
+    def createStreamingContext(self, sparkContext):
+        return StreamingContext(sparkContext, 10)

@@ -7,26 +7,32 @@ This file will connect with Twitter to read tweets
 '''
 import time
 
+from pyspark.sql import Row
+
 from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
+from pyspark.conf import SparkConf
 
 conf = BaseConfUtils()
-ssc = conf.createStreamingContext("Twitter Streaming")
+sc = conf.createSparkContext("PySpark Word Count Exmaple")
+sqlContxt = conf.createSQLContext(sc)
 
-def filter(rdd):
-    rdd = rdd.filter(lambda word: word.lower().startswith("#"))
+def filterEmptyLines(line):
+    if len(line) > 0:
+        return  line
+
+
 if __name__ == "__main__":
-    IP = "localhost"
-    port = 9009
 
-    socket_stream = ssc.socketTextStream(IP,port)
-    lines = socket_stream.window(20)
-    # counts = lines.flatMap(lambda line: line.split(" ")) \
-    #     .map(lambda x: (x, 1)) \
-    #     .reduceByKey(lambda a, b: a + b)
-    # counts.pprint()
-    lines.pprint()
-    lines.saveAsTextFiles("D:/Study_Document/GIT/OneStopPySpark/temp/%f"% time.time())
-    # counts = lines.flatMap(lambda line: line.split("\n"))
-    # counts.pprint()
-    ssc.start()
-    ssc.awaitTermination()
+
+    words = sc.textFile("D:/Study_Document/pycharm-workspace/PySparkPOC/resources/wordCount.txt").flatMap(
+        lambda line: line.split("\n"))
+    words = words.filter(filterEmptyLines)
+    line = words.map(lambda p: Row(name=p))
+    df = sqlContxt.createDataFrame(line)
+    #output = line.collect()
+    df.coalesce(1).write.format("text").mode("append").save("D:/Study_Document/pycharm-workspace/PySparkPOC/resources/WordCount1.txt")
+    df.show()
+    # for (word) in output:
+    #     print(word)
+
+    print("Execution Completed")

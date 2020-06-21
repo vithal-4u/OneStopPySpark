@@ -9,7 +9,6 @@ conf = BaseConfUtils()
 '''
 Fetch records using SQLContext.
 '''
-# sqlContext = conf.createSQLContext("appName")
 sparkSess = conf.createSparkSession("Testing")
 
 if __name__ == '__main__':

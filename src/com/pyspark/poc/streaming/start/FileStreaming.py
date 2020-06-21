@@ -10,7 +10,8 @@ This file will stream folder and will read the newly generated files using PySpa
 from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
 
 conf = BaseConfUtils()
-scc = conf.createStreamingContext("Read Twitter Data")
+sparkContxt = conf.createSparkContext("Streaming Local File System")
+scc = conf.createStreamingContext(sparkContxt)
 
 
 if __name__ == "__main__":
