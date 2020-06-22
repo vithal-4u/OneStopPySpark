@@ -26,3 +26,5 @@ In this, Spark Streaming receives a continuous input data stream from sources li
 
 .. image:: Pyspark-streaming.png
    :width: 400px
+
+The key abstraction for Spark Streaming is Discretized Stream (DStream). DStreams are built on RDDs facilitating the Spark developers to work within the same context of RDDs and batches to solve the streaming issues. Moreover, Spark Streaming also integrates with MLlib, SQL, DataFrames, and GraphX which widens your horizon of functionalities. Being a high-level API, Spark Streaming provides fault-tolerance “exactly-once” semantics for stateful operations. 
