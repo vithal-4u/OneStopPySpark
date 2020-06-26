@@ -1,4 +1,18 @@
 ===============
+  Spark
+===============
+Apache Spark started as a research project at the UC Berkeley AMPLab in 2009 and was open sourced in early 2010. Since then, there has been no looking back. In 2016, Spark released TensorFrames for Deep Learning.
+
+.. image:: Spark-History.jpg
+   :width: 400px
+   
+Under the hood, Spark uses a different data structure known as RDD (Resilient Distributed Dataset). It is resilient in a sense that they have an ability to re-create any point of time during the execution process. So RDD creates a new RDD using the last one and always has the ability to reconstruct in case of any error. They are also immutable as original RDDs remain unaltered. As Spark is a distributed framework, it works on master and worker node settings. The code to execute any of the activities is first written on Spark Driver, and that is shared across worker nodes where the data actually resides. Each worker node contains Executors that will actually execute the code. Cluster Manager keeps a check on the availability of various worker nodes for the next task allocation.
+
+.. image:: Spark-cluster.jpg
+   :width: 400px
+
+The prime reason that Spark is hugely popular is due to the fact that it’s very easy to use it for data processing, Machine Learning, and streaming data; and it’s comparatively very fast since it does all in-memory computations. Since Spark is a generic data processing engine, it can easily be used with various data sources such as HBase, Cassandra, Amazon S3, HDFS, etc. Spark provides the users four language options to use on it: Java, Python, Scala, and R.
+===============
   PySpark
 ===============
 Apache Spark is written in Scala programming language. PySpark has been released in order to support the collaboration of Apache Spark and Python, it actually is a Python API for Spark. In addition, PySpark, helps you interface with Resilient Distributed Datasets (RDDs) in Apache Spark and Python programming language. This has been achieved by taking advantage of the Py4j library.PySpark Logo
