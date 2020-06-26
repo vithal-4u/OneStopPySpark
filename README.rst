@@ -13,6 +13,13 @@ Under the hood, Spark uses a different data structure known as RDD (Resilient Di
 
 The prime reason that Spark is hugely popular is due to the fact that it’s very easy to use it for data processing, Machine Learning, and streaming data; and it’s comparatively very fast since it does all in-memory computations. Since Spark is a generic data processing engine, it can easily be used with various data sources such as HBase, Cassandra, Amazon S3, HDFS, etc. Spark provides the users four language options to use on it: Java, Python, Scala, and R.
 
+SPARK CORE
+================
+Spark Core is the most fundamental building block of Spark. It is the backbone of Spark’s supreme functionality features. Spark Core enables the in-memory computations that drive the parallel and distributed processing of data. All the features of Spark are built on top of Spark Core. Spark Core is responsible for managing tasks, I/O operations, fault tolerance, and memory management, etc.
+
+.. image:: Spark-core.jpg
+   :width: 400px
+
 ===============
 PySpark
 ===============
