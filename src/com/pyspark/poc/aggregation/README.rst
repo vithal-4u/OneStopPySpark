@@ -5,10 +5,10 @@ Spark Functions
 Overview
 ==============
   In this tutorial, I'm showing spark different function used with examples:
-  a. Handling basic operation on dataframe like filters, updating or modifing column data etc in DataFrameBasicOperations.py,DataFrameBasics.py
-  b. Handling aggresions like groupBy, orderBy, countDistinct, aggr-Max Min, sum etc in GroupBy&AggregateFunctions.py
-  c. Implemented Pivot operations in pivotingFun.py
-  d. Implemented Window Functions or Windowed Aggregates in windowsFun.py
+    a. Handling basic operation on dataframe like filters, updating or modifing column data etc in DataFrameBasicOperations.py,DataFrameBasics.py
+    b. Handling aggresions like groupBy, orderBy, countDistinct, aggr-Max Min, sum etc in GroupBy&AggregateFunctions.py
+    c. Implemented Pivot operations in pivotingFun.py
+    d. Implemented Window Functions or Windowed Aggregates in windowsFun.py
   
 Pivot Function:
 ================
