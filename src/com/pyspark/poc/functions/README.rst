@@ -28,3 +28,14 @@ There are hundreds of general spark functions in which Aggregate Functions and |
 
 .. image:: spark-window.png
    :width: 400px
+
+Basic Frame with partitionBy:
+-----------------------------
+A Basic Frame has the following traits.
+  - Created with Window.partitionBy on one or more columns
+  - Each row has a corresponding frame
+  - The frame will be the same for every row in the same within the same partition. (NOTE: This will NOT be the case with Ordered Frame)
+  - Aggregate/Window functions can be applied on each row+frame to generate a single value
+  
+.. image:: spark-window-2.png
+   :width: 400px
