@@ -25,5 +25,6 @@ Window (also, windowing or windowed) functions perform a calculation over a set 
     - Can use SQL grammar or DataFrame API.
 
 There are hundreds of general spark functions in which Aggregate Functions and |Window Functions categories are related to this case.
+
 .. image:: spark-window.png
    :width: 400px
