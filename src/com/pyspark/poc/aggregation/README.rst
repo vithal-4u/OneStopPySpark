@@ -18,3 +18,8 @@ Pivot Function:
 Window Functions or Windowed Aggregates:
 ========================================
   Window (also, windowing or windowed) functions perform a calculation over a set of rows. It is an important tool to do statistics. Most Databases support Window functions. Spark from version 1.4 start supporting Window functions.
+  Spark Window Functions have the following traits:
+    - perform a calculation over a group of rows, called the Frame.
+    - a frame corresponding to the current row
+    - return a new value to for each row by an aggregate/window function
+    - Can use SQL grammar or DataFrame API.
