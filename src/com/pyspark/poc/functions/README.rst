@@ -49,3 +49,7 @@ We can use range functions to change frame boundary.
   - Each row will have a corresponding frame
   - Frame boundary can be controlled by rangeBetween or rowsBetween
   - Aggregate/Window functions can be applied on each row+frame to generate a single value
+  
+There are two range window functions, here are the functions definitions
+  1. rowsBetween( start, end)
+  2. rangeBetween(start, end)
