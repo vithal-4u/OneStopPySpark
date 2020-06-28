@@ -53,3 +53,6 @@ We can use range functions to change frame boundary.
 There are two range window functions, here are the functions definitions
   1. rowsBetween( start, end)
   2. rangeBetween(start, end)
+
+both functions accept two parameters, [start, end] all inclusive. The parameters value can be Window.unboundedPreceding, Window.unboundedFollowing, and Window.currentRow. Or a value relative to Window.currentRow, either negtive or positive.
+rowsBetween get the frame boundary based on the row index in the window compared to currentRow. here are a few examples and it’s meaning.
