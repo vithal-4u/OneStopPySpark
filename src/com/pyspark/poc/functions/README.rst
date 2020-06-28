@@ -56,3 +56,7 @@ There are two range window functions, here are the functions definitions
 
 both functions accept two parameters, [start, end] all inclusive. The parameters value can be Window.unboundedPreceding, Window.unboundedFollowing, and Window.currentRow. Or a value relative to Window.currentRow, either negtive or positive.
 rowsBetween get the frame boundary based on the row index in the window compared to currentRow. here are a few examples and it’s meaning.
+
+.. image:: spark-window-3.png
+   :width: 400px
+   
