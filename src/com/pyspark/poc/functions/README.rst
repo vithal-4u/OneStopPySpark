@@ -39,3 +39,13 @@ A Basic Frame has the following traits.
   
 .. image:: spark-window-2.png
    :width: 400px
+   
+Range Frame
+-----------------------------
+We can use range functions to change frame boundary.
+  - Create with Window.partitionBy on one or more columns
+  - It usually has orderBy so that the data in the frame is ordered.
+  - Then followed by rangeBetween or rowsBetween
+  - Each row will have a corresponding frame
+  - Frame boundary can be controlled by rangeBetween or rowsBetween
+  - Aggregate/Window functions can be applied on each row+frame to generate a single value
