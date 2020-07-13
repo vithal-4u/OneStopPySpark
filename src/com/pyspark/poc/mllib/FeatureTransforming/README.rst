@@ -58,3 +58,9 @@ Feature hashing projects a set of categorical or numerical features into a featu
       boolean features are represented as “column_name=true” or “column_name=false”,
       with an indicator value of 1.0.
   Null (missing) values are ignored
+  
+  
+Feature Transformer :
+========================
+What is Feature Transformer?
+Feature transformation is the name given to replacing our original features with functions of these features. The functions can either be of individual features, or of groups of them. The result of these functions is itself a random variable – by definition the function of any random variable is itself a random variable. Utilizing feature transformations is equivalent to changing the bases of our feature space, and it is done for the same reason that we change bases in calculus: We hope that the new bases will be easier to work with.
