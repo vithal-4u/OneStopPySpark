@@ -14,6 +14,8 @@ Created on 10-July-2020
     c. n-gram
     d. Binarizer
     e. PCA
+    f. PolynomialExpansion
+    g. StringIndexer
 @author: kasho
 '''
 
@@ -202,5 +204,64 @@ result.show(truncate=False)
 |[-4.645104331781534,-1.1167972663619026,-5.524543751369387]|
 |[-6.428880535676489,-5.337951427775355,-5.524543751369389] |
 +-----------------------------------------------------------+
+'''
+
+##################################################################################################################
+# PolynomialExpansion :
+#   Polynomial expansion is the process of expanding your features into a polynomial space,
+#   which is formulated by an n-degree combination of original dimensions. A PolynomialExpansion class provides
+#   this functionality. The example below shows how to expand your features into a 3-degree polynomial space.
+##################################################################################################################
+from pyspark.ml.feature import PolynomialExpansion
+from pyspark.ml.linalg import Vectors
+
+df = spark.createDataFrame([
+    (Vectors.dense([2.0, 1.0]),),
+    (Vectors.dense([0.0, 0.0]),),
+    (Vectors.dense([3.0, -1.0]),)
+], ["features"])
+
+polyExpansion = PolynomialExpansion(degree=3, inputCol="features", outputCol="polyFeatures")
+polyDF = polyExpansion.transform(df)
+
+polyDF.show(truncate=False)
+'''
++----------+------------------------------------------+
+|features  |polyFeatures                              |
++----------+------------------------------------------+
+|[2.0,1.0] |[2.0,4.0,8.0,1.0,2.0,4.0,1.0,2.0,1.0]     |
+|[0.0,0.0] |[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]     |
+|[3.0,-1.0]|[3.0,9.0,27.0,-1.0,-3.0,-9.0,1.0,3.0,-1.0]|
++----------+------------------------------------------+
+'''
+
+##################################################################################################################
+# StringIndexer :
+#   StringIndexer encodes a string column of labels to a column of label indices.
+#   StringIndexer can encode multiple columns. The indices are in [0, numLabels), and
+#   four ordering options are supported: “frequencyDesc”, “frequencyAsc”, “alphabetDesc”, “alphabetAsc”.
+#   Note that in case of equal frequency when under “frequencyDesc”/”frequencyAsc”, the strings are further
+#   sorted by alphabet.
+##################################################################################################################
+from pyspark.ml.feature import StringIndexer
+
+df = spark.createDataFrame([(0, "a"), (1, "b"), (2, "c"), (3, "a"), (4, "a"), (5, "c")], ["id", "category"])
+
+indexer = StringIndexer(inputCol="category", outputCol="categoryIndex")
+indexed = indexer.fit(df).transform(df)
+indexed.show()
+'''
++---+--------+-------------+
+| id|category|categoryIndex|
++---+--------+-------------+
+|  0|       a|          0.0|
+|  1|       b|          2.0|
+|  2|       c|          1.0|
+|  3|       a|          0.0|
+|  4|       a|          0.0|
+|  5|       c|          1.0|
++---+--------+-------------+
+
+“a” gets index 0 because it is the most frequent, followed by “c” with index 1 and “b” with index 2.
 '''
 print("Execution completed")
