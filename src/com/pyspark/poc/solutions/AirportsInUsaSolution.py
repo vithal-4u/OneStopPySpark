@@ -12,3 +12,22 @@ Problem Requirment:
 
 @author: Ashok Kumar
 '''
+
+from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
+from com.pyspark.poc.utils.CommanUtils import CommanUtils
+
+conf = BaseConfUtils()
+sc=conf.createSparkContext("AirportList")
+
+def splitByComma(line: str):
+    splits = CommanUtils.COMMA_DELIMITER.split(line)
+    return "{}, {}".format(splits[1], splits[2])
+
+if __name__ == "__main__":
+    airports = sc.textFile("D:/Study_Document/GIT/OneStopPySpark/resources/airports.txt")
+    airportsInUSA = airports.filter(lambda lines: CommanUtils.COMMA_DELIMITER.split(lines)[3] == "\"United States\"")
+    airportsNameAndCityNames  = airportsInUSA.map(splitByComma)
+    airportsNameAndCityNames.saveAsTextFile("D:/Study_Document/GIT/OneStopPySpark/out/airports_in_usa.text")
+
+print("Execution Completed")
+
