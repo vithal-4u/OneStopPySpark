@@ -37,7 +37,6 @@ if __name__ == "__main__":
 
     userTweets = spark.read.json("D:/Study_Document/GIT/OneStopPySpark/resources/Epam.json")
     userTweets.printSchema()
-
     #nobelRDD = userTweets.select('USER_NAME', explode(userTweets['TEXT'])).rdd
     #nobelRDD.collect()
     userTweetsPojo = userTweets.createTempView("UserTweets")
