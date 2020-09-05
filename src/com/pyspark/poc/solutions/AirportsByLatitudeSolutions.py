@@ -12,3 +12,20 @@ Created on 03-Sept-2020
     "Tofino", 49.082222
 
 '''
+from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
+from com.pyspark.poc.utils.CommanUtils import CommanUtils
+
+conf = BaseConfUtils()
+sc = conf.createSparkContext("AirportsLatitude")
+
+def splitByComma(line: str):
+    splits = CommanUtils.COMMA_DELIMITER.split(line)
+    return "{}, {}".format(splits[1], splits[6])
+
+if __name__ == "__main__":
+    airportsLatitude = sc.textFile("D:/Study_Document/GIT/OneStopPySpark/resources/airports.txt")
+    filteredAirports = airportsLatitude.filter(lambda lines: float(CommanUtils.COMMA_DELIMITER.split(lines)[6]) > 40)
+    airpotsNameAndLatitude = filteredAirports.map(splitByComma)
+    airpotsNameAndLatitude.saveAsTextFile("D:/Study_Document/GIT/OneStopPySpark/out/airportsLatitude_in_usa.text")
+
+print("Execution Completed")
