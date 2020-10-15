@@ -46,11 +46,12 @@ if __name__ == "__main__":
 
     #fitlerVal=key.filter(lambda row : filterMyHashTag(row))
     userHashTagTextRDD.foreach(print)
-
+    userHashTagTextRDD.createDataFrame()
     df = userHashTagTextRDD.toDF()
     print(df)
     #print(fitlerVal.take(10))
     #print(teenagerNamesDF.take(10))
     #print(teenagerNamesDF['USER_NAME'])
-    #teenagerNamesDF.show()
+    #teenagerNamesDF.show()TSAP08hc513.
+
 

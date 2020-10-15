@@ -24,7 +24,7 @@ from pyspark.ml.feature import CountVectorizer
 from pyspark.ml.feature import FeatureHasher
 
 conf = BaseConfUtils()
-sparkSess = conf.createSparkSession("Diabates data Classification")
+sparkSess = conf.createSparkSession("Examples of All Feature Extractions")
 
 ###############################################################################################################
 # TF-IDF :
