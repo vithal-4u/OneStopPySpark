@@ -7,7 +7,7 @@ Basic operation on DataFrames
 '''
 from gevent.resolver.cares import result
 
-from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
+from src.com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
 
 conf = BaseConfUtils()
 sparkSess = conf.createSparkSession("DataFrameBasicsOperations")

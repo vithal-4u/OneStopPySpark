@@ -6,7 +6,7 @@ This Script is to read data from csv file and group the highest salary and find/
 
 @author: kasho
 '''
-from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
+from src.com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
 
 conf = BaseConfUtils()
 sparkSess = conf.createSparkSession("groupByWindowFun")

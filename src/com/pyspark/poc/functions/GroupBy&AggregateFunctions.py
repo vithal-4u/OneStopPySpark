@@ -5,7 +5,7 @@ Basic operation on DataFrames
 
 @author: kasho
 '''
-from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
+from src.com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
 
 conf = BaseConfUtils()
 sparkSess = conf.createSparkSession("GroupByAggregateFun")
