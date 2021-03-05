@@ -1,4 +1,4 @@
-from com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
+from src.com.pyspark.poc.utils.BaseConfUtils import BaseConfUtils
 from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
 
